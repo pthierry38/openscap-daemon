@@ -1,0 +1,11 @@
+--- a/setup.py
++++ b/setup.py
+@@ -57,7 +57,7 @@
+     data_files=[
+         (os.path.join("/", "etc", "dbus-1", "system.d"),
+          ["org.oscapd.conf"]),
+-        (os.path.join("/", "usr", "lib", "systemd", "system"),
++        (os.path.join("/", "lib", "systemd", "system"),
+          ["oscapd.service"]),
+         (os.path.join("/", "usr", "share", "doc", "openscap-daemon"),
+          ["README.md", "LICENSE"]),
