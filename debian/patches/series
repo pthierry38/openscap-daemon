@@ -1,2 +1,3 @@
 update_systemd_install.patch
 changelog.patch
+license_redundancy.patch

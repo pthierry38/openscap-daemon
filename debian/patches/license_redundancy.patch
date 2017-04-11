@@ -1,0 +1,19 @@
+Description: Licenses are collected through debian/copyright file
+ This patch delete the LICENSE file from the installation as it as
+ already been collected through the d/copyright file to avoid
+ redundancy.
+Author: Philippe Thierry
+Last-Update: 2017-04-11
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/setup.py
++++ b/setup.py
+@@ -60,7 +60,7 @@
+         (os.path.join("/", "lib", "systemd", "system"),
+          ["oscapd.service"]),
+         (os.path.join("/", "usr", "share", "doc", "openscap-daemon"),
+-         ["README.md", "LICENSE"]),
++         ["README.md"]),
+         (os.path.join("/", "usr", "share", "man", "man8"),
+          ["man/oscapd.8", "man/oscapd-cli.8", "man/oscapd-evaluate.8"]),
+     ],
