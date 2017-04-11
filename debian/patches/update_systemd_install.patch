@@ -1,3 +1,10 @@
+Description: Update systemd service installation
+ This patch update the sytemd installation to /lib/systemd instead
+ of upstream target /usr/lib/systemd (Red-Hat)
+Author: Philippe Thierry
+Last-Update: 2017-04-11
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
 --- a/setup.py
 +++ b/setup.py
 @@ -57,7 +57,7 @@
