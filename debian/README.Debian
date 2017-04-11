@@ -1,6 +1,8 @@
 openscap-daemon for Debian
 -------------------------
 
-<possible notes regarding this package - if none, delete this file>
+The oscapd daemon allows the usage of automated compliance check of a
+complete physical or virtual infrastructure, associated a dbus service
+with a easy to use CLI to configure compliance jobs.
 
- -- pret <phil@reseau-libre.net>  Tue, 11 Apr 2017 17:01:11 +0200
+ -- Philippe Thierry <phil@reseau-libre.net>  Tue, 11 Apr 2017 17:01:11 +0200
