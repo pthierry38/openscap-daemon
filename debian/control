@@ -12,7 +12,7 @@ Package: openscap-daemon
 Architecture: all
 Depends: ${misc:Depends}, python (>> 2.7), python-dbus, python-docker, libopenscap8
 Multi-Arch: foreign
-Recommends: libopenscap8, openssh-client
+Recommends: openssh-client
 Suggests: docker
 Description: Daemon for infrastructure continuous SCAP compliance check
  This service is a daemon that allow periodic compliance scans of a complete
