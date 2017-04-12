@@ -1,0 +1,5 @@
+Tests: systemd-start-stop-daemon
+Depends: systemd
+
+Tests: sysvinit-start-stop-daemon
+Depends: sysv-rc, sysv-rc-conf, sysvinit-core, sysvinit-utils

@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+# make sure that dbus is up
+systemctl -q start dbus.service
+
+systemctl -q enable oscapd.service
+
+set +e
+
+systemctl -q start oscapd.service
+if [ $? -ne 0 ]; then
+  echo "[T1] KO: Unable to start oscapd service !"
+  journalctl -xe
+  exit 1
+else
+  echo "[T1] OK: oscapd started properly."
+fi
+
+systemctl -q stop oscapd.service
+if [ $? -ne 0 ]; then
+  echo "[T2] KO: Unable to start oscapd service !"
+  journalctl -xe
+  exit 1
+else
+  echo "[T2] OK: oscapd stoped properly."
+fi
+
+
