@@ -47,7 +47,7 @@ do_start() {
   # its status through a pidfile in the case of sysvinit start
   if [ ! -f /var/run/oscapd.pid ]; then
     log_daemon_msg "Starting OpenSCAP dbus service" "oscapd" || true
-    if start-stop-daemon --start --quiet --oknodo --background --make-pidfile --pidfile /var/run/oscapd.pid --exec $DAEMON; then
+    if start-stop-daemon --start --quiet --oknodo --background --exec $DAEMON; then
       log_end_msg 0 || true
     else
       log_end_msg 1 || true
@@ -58,11 +58,7 @@ do_start() {
   fi
 }
 
-do_stop() {
-  log_daemon_msg "Stopping OpenSCAP dbus service" "oscapd" || true
-  if start-stop-daemon --stop --quiet --oknodo --pidfile /var/run/oscapd.pid --remove-pidfile; then
-    log_end_msg 0 || true
-  else
-    log_end_msg 1 || true
-  fi
-}
+# this daemon is a dbus service hooked by oscapd-cli at need, no need to
+# "stop" it
+#do_stop() {
+#}
