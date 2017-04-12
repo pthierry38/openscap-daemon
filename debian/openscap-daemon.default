@@ -1,0 +1,7 @@
+# Defaults for openscap-daemon initscript
+# sourced by /etc/init.d/openscap-daemon
+# installed at /etc/default/openscap-daemon by the maintainer scripts
+
+# set to yes to start the daemon
+OSCAPD_START="no"
+# OSCAPD_START="yes"

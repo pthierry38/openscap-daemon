@@ -1,0 +1,87 @@
+#!/bin/sh
+# kFreeBSD do not accept scripts as interpreters, using #!/bin/sh and sourcing.
+if [ true != "$INIT_D_SCRIPT_SOURCED" ] ; then
+    set "$0" "$@"; INIT_D_SCRIPT_SOURCED=true . /lib/init/init-d-script
+fi
+### BEGIN INIT INFO
+# Provides:          openscap-daemon
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Daemon for infrastructure SCAP compliance check
+# Description:       This service is a daemon that allow periodic compliance
+#                    scans of a complete infrastructure, supporting local
+#                    check, remote check, VM or Docker check.
+#                    The daemon is associated to a CLI allowing easy
+#                    configuration of targets and  security profiles to
+#                    evaluate and easy results and reports management
+### END INIT INFO
+
+set -e
+
+# Author: Philippe Thierry <phil@reseau-libre.net>
+
+if test -f /etc/default/openscap-daemon; then
+    . /etc/default/openscap-daemon
+fi
+
+. /lib/lsb/init-functions
+
+
+
+DESC="openscap-daemon"
+DAEMON=/usr/bin/oscapd
+
+# running the dbus service when activated only. Disabled by default.
+test "${OSCAPD_START}" = "yes" || exit 0
+
+# This is an example to start a single forking daemon capable of writing
+# a pid file. To get other behaviors, implement do_start(), do_stop() or
+# other functions to override the defaults in /lib/init/init-d-script.
+# See also init-d-script(5)
+
+do_start() {
+  # oscapd doesn't go into background and does not support pidfile
+  # it can be checked as a dbus service but it is easier to check
+  # its status through a pidfile in the case of sysvinit start
+  if [ ! -f /var/run/oscapd.pid ]; then
+    log_daemon_msg "Starting OpenSCAP dbus service" "oscapd" || true
+    if start-stop-daemon --start --quiet --oknodo --background --make-pidfile --pidfile /var/run/oscapd.pid --exec $DAEMON; then
+      log_end_msg 0 || true
+    else
+      log_end_msg 1 || true
+    fi
+  else
+    log_daemon_msg "OpenSCAP dbus service already started" "oscapd" || true
+    log_end_msg 1 || true
+  fi
+}
+
+do_stop() {
+  log_daemon_msg "Stopping OpenSCAP dbus service" "oscapd" || true
+  if start-stop-daemon --stop --quiet --oknodo --pidfile /var/run/oscapd.pid --remove-pidfile; then
+    log_end_msg 0 || true
+  else
+    log_end_msg 1 || true
+  fi
+}
+
+case "$1" in
+  start)
+    do_start;
+    ;;
+  stop)
+    do_stop;
+    ;;
+  restart)
+    log_daemon_msg "Restarting OpenSCAP dbus service" "oscapd" || true
+    do_stop && do_start && log_end_msg 0 || log_end_msg 1 || true
+    ;;
+  status)
+    status_of_proc -p /var/run/oscapd.pid /usr/bin/oscapd oscapd && exit 0 || exit $?
+    ;;
+  *)
+    log_action_msg "Usage: /etc/init.d/openscap-daemon {start|stop|restart|status}" || true
+    exit 1
+esac
