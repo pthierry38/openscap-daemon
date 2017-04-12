@@ -66,22 +66,3 @@ do_stop() {
     log_end_msg 1 || true
   fi
 }
-
-case "$1" in
-  start)
-    do_start;
-    ;;
-  stop)
-    do_stop;
-    ;;
-  restart)
-    log_daemon_msg "Restarting OpenSCAP dbus service" "oscapd" || true
-    do_stop && do_start && log_end_msg 0 || log_end_msg 1 || true
-    ;;
-  status)
-    status_of_proc -p /var/run/oscapd.pid /usr/bin/oscapd oscapd && exit 0 || exit $?
-    ;;
-  *)
-    log_action_msg "Usage: /etc/init.d/openscap-daemon {start|stop|restart|status}" || true
-    exit 1
-esac
