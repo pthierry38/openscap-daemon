@@ -33,7 +33,7 @@ The daemon is a dbus service, interracting with is can be done only with root
 (or sudo) rights. This can be changed if needed by updating the daemon policy in
 /etc/dbus-1/org.oscapd.conf.
 
-These interractions are done using the tool oscapd-cli. This tool permits to:
+These interractions are done using the tool oscapd-cli. This tool permits one to:
  - create policy evaluation tasks
  - enable or disable created tasks
  - get back successive results (XML) and reports (HTML) for each task instance
