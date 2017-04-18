@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Philippe Thierry <phil@reseau-libre.net>
 Build-Depends: debhelper (>=9), python-minimal, dh-python, python3 (>= 3.2), python3-dbus, python3-docker, python3-lxml
 Standards-Version: 3.9.8
-XS-Python-Version: >= 3.2
+X-Python3-Version: >= 3.2
 Testsuite: autopkgtest
 Homepage: https://www.open-scap.org/tools/openscap-daemon
 Vcs-Git: https://github.com/pthierry38/openscap-daemon.git
