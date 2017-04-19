@@ -1,5 +1,8 @@
 #!/usr/bin/make -f
 
+# redirect module to correct dist-packages dir
+export PYBUILD_INSTALL_ARGS=--install-lib=/usr/lib/python3/dist-packages
+
 override_dh_installinit:
 	dh_installinit -popenscap_daemon --name=oscapd
 
