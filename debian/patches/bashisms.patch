@@ -1,0 +1,76 @@
+--- a/atomic/centos7_spc/install.sh
++++ b/atomic/centos7_spc/install.sh
+@@ -9,14 +9,14 @@
+ 
+ 
+ # Check if /etc/oscapd exists on the host
+-if [[ ! -d ${HOST}/${ETC} ]]; then
++if [ ! -d ${HOST}/${ETC} ]; then
+     mkdir ${HOST}/${ETC}
+ fi
+ 
+ DATE=$(date +'%Y-%m-%M-%T')
+ 
+ # Check if /etc/oscapd/config.ini exists
+-if [[ -f ${HOST}/${ETC}/${ETC_FILE} ]]; then
++if [ -f ${HOST}/${ETC}/${ETC_FILE} ]; then
+     SAVE_NAME=${ETC_FILE}.${DATE}.atomic_save
+     echo "Saving current ${ETC_FILE} as ${SAVE_NAME}"
+     mv ${HOST}/${ETC}/${ETC_FILE} ${HOST}/${ETC}/${SAVE_NAME}
+--- a/atomic/f23_spc/install.sh
++++ b/atomic/f23_spc/install.sh
+@@ -9,14 +9,14 @@
+ 
+ 
+ # Check if /etc/oscapd exists on the host
+-if [[ ! -d ${HOST}/${ETC} ]]; then
++if [ ! -d ${HOST}/${ETC} ]; then
+     mkdir ${HOST}/${ETC}
+ fi
+ 
+ DATE=$(date +'%Y-%m-%M-%T')
+ 
+ # Check if /etc/oscapd/config.ini exists
+-if [[ -f ${HOST}/${ETC}/${ETC_FILE} ]]; then
++if [ -f ${HOST}/${ETC}/${ETC_FILE} ]; then
+     SAVE_NAME=${ETC_FILE}.${DATE}.atomic_save
+     echo "Saving current ${ETC_FILE} as ${SAVE_NAME}"
+     mv ${HOST}/${ETC}/${ETC_FILE} ${HOST}/${ETC}/${SAVE_NAME}
+--- a/atomic/f24_spc/install.sh
++++ b/atomic/f24_spc/install.sh
+@@ -9,14 +9,14 @@
+ 
+ 
+ # Check if /etc/oscapd exists on the host
+-if [[ ! -d ${HOST}/${ETC} ]]; then
++if [ ! -d ${HOST}/${ETC} ]; then
+     mkdir ${HOST}/${ETC}
+ fi
+ 
+ DATE=$(date +'%Y-%m-%M-%T')
+ 
+ # Check if /etc/oscapd/config.ini exists
+-if [[ -f ${HOST}/${ETC}/${ETC_FILE} ]]; then
++if [ -f ${HOST}/${ETC}/${ETC_FILE} ]; then
+     SAVE_NAME=${ETC_FILE}.${DATE}.atomic_save
+     echo "Saving current ${ETC_FILE} as ${SAVE_NAME}"
+     mv ${HOST}/${ETC}/${ETC_FILE} ${HOST}/${ETC}/${SAVE_NAME}
+--- a/atomic/rhel7_spc/install.sh
++++ b/atomic/rhel7_spc/install.sh
+@@ -9,14 +9,14 @@
+ 
+ 
+ # Check if /etc/oscapd exists on the host
+-if [[ ! -d ${HOST}/${ETC} ]]; then
++if [ ! -d ${HOST}/${ETC} ]; then
+     mkdir ${HOST}/${ETC}
+ fi
+ 
+ DATE=$(date +'%Y-%m-%M-%T')
+ 
+ # Check if /etc/oscapd/config.ini exists
+-if [[ -f ${HOST}/${ETC}/${ETC_FILE} ]]; then
++if [ -f ${HOST}/${ETC}/${ETC_FILE} ]; then
+     SAVE_NAME=${ETC_FILE}.${DATE}.atomic_save
+     echo "Saving current ${ETC_FILE} as ${SAVE_NAME}"
+     mv ${HOST}/${ETC}/${ETC_FILE} ${HOST}/${ETC}/${SAVE_NAME}
