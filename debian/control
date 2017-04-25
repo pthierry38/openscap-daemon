@@ -2,7 +2,13 @@ Source: openscap-daemon
 Section: admin
 Priority: optional
 Maintainer: Philippe Thierry <phil@reseau-libre.net>
-Build-Depends: debhelper (>=9), dh-python, python3 (>= 3.2), python3-dbus, python3-docker, python3-lxml
+Build-Depends:
+ debhelper (>=9),
+ dh-python,
+ python3 (>= 3.2),
+ python3-dbus,
+ python3-docker,
+ python3-lxml,
 Standards-Version: 3.9.8
 X-Python3-Version: >= 3.2
 Testsuite: autopkgtest
@@ -12,10 +18,20 @@ Vcs-Browser: https://github.com/pthierry38/openscap-daemon
 
 Package: openscap-daemon
 Architecture: all
-Depends: ${misc:Depends}, lsb-base, ${python3:Depends}, dbus, python3-dbus, python3-docker, python3-lxml, libopenscap8
+Depends:
+ dbus,
+ libopenscap8,
+ lsb-base,
+ python3-dbus,
+ python3-docker,
+ python3-lxml,
+ ${misc:Depends},
+ ${python3:Depends},
 Multi-Arch: foreign
-Recommends: openssh-client
-Suggests: docker
+Recommends:
+ openssh-client,
+Suggests:
+ docker,
 Description: Daemon for infrastructure continuous SCAP compliance checks
  This service is a daemon that allows periodic compliance scans of a complete
  infrastructure, supporting local checks, remote checks, VM or Docker checks.
