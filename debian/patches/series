@@ -1,3 +1,4 @@
+readme_install.patch
 python_vers.patch
 update_systemd_install.patch
 changelog.patch
