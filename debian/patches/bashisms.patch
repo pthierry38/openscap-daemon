@@ -1,3 +1,8 @@
+Description: Clean bashisms from various shellscripts
+ This patch clean any dependency on bash, which may make the
+ script fails using dash through /bin/sh.
+Author: Philippe Thierry
+Last-Update: 2017-04-25
 --- a/atomic/centos7_spc/install.sh
 +++ b/atomic/centos7_spc/install.sh
 @@ -9,14 +9,14 @@

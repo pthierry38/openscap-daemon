@@ -1,3 +1,8 @@
+Description: Updated upstream README to clean manual install doc
+ Manual install is no more needed when using packages. Its content
+ is then cleaned from the upstream README before install.
+Author: Philippe Thierry
+Last-Update: 2017-04-25
 --- a/README.md
 +++ b/README.md
 @@ -184,36 +184,6 @@
