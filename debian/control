@@ -16,8 +16,8 @@ Depends: ${misc:Depends}, lsb-base, ${python3:Depends}, dbus, python3-dbus, pyth
 Multi-Arch: foreign
 Recommends: openssh-client
 Suggests: docker
-Description: Daemon for infrastructure continuous SCAP compliance check
- This service is a daemon that allow periodic compliance scans of a complete
- infrastructure, supporting local check, remote check, VM or Docker check.
- The daemon is associated to a CLI allowing easy configuration of targets and
+Description: Daemon for infrastructure continuous SCAP compliance checks
+ This service is a daemon that allows periodic compliance scans of a complete
+ infrastructure, supporting local checks, remote checks, VM or Docker checks.
+ The daemon is associated with a CLI allowing easy configuration of targets and
  security profiles to evaluate and easy results and reports management
