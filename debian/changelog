@@ -1,5 +1,11 @@
 openscap-daemon (0.1.6-1) unstable; urgency=medium
 
-  * Initial release.
+  * Initial release (Closes: #860126).
+  * Add support for upstream changelog
+    integrated manually before build, from github ReleaseNote
+    support for getting upstream version from debian changelog
+  * Add dep5 conform quilt patch
+  * Add support for both systemd and sysvinit scripts
+  * Add watch file for uscan
 
- -- Philippe Thierry <phil@reseau-libre.net>  Tue, 11 Apr 2017 17:01:11 +0200
+ -- Philippe Thierry <phil@reseau-libre.net>  Tue, 12 Apr 2017 11:02:21 +0200
