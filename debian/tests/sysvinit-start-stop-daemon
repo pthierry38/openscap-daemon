@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -e
+
+# make sure that dbus is up
+/etc/init.d/dbus start
+
+echo "OSCAPD_START=\"yes\"" > /etc/default/openscap-daemon
+
+set +e
+
+/etc/init.d/openscap-daemon start
+if [ $? -ne 0 ]; then
+  echo "[T1] KO: Unable to start oscapd service!"
+  exit 1
+else
+  echo "[T1] OK: oscapd started properly."
+  if [ ! -f /var/run/oscapd.pid ]; then
+    echo "[T1] Error: Pid file has not been created!"
+    exit 2
+  fi
+fi
+
+# giving some time to initialization
+sleep 1
+
+/etc/init.d/openscap-daemon stop
+if [ $? -ne 0 ]; then
+  echo "[T2] KO: Unable to start oscapd service!"
+  exit 3
+else
+  echo "[T2] OK: oscapd stoped properly."
+  if [ -f /var/run/oscapd.pid ]; then
+    echo "[T2] Error: Pid file has not been deleted!"
+    exit 4
+  fi
+fi
+
