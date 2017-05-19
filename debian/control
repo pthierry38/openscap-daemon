@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Philippe Thierry <phil@reseau-libre.net>
 Build-Depends: debhelper (>=9), dh-python, python (>> 2.7), python-dbus, python-docker
 Standards-Version: 3.9.8
+Testsuite: autopkgtest
 Homepage: https://www.open-scap.org/tools/openscap-daemon
 Vcs-Git: https://github.com/pthierry38/openscap-daemon.git
 Vcs-Browser: https://github.com/pthierry38/openscap-daemon
@@ -13,7 +14,6 @@ Architecture: all
 Depends: ${misc:Depends}, python (>> 2.7), dbus, python-dbus, python-gobject, python-docker, libopenscap8
 Multi-Arch: foreign
 Recommends: openssh-client
-Testsuite: autopkgtest
 Suggests: docker
 Description: Daemon for infrastructure continuous SCAP compliance check
  This service is a daemon that allow periodic compliance scans of a complete
