@@ -1,0 +1,38 @@
+Description: Passing openscap-daemon to python3 only
+ This patch targets future compatibility with next Debian releases
+Author: Philippe Thierry
+Last-Update: 2017-04-19
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/bin/oscapd
++++ b/bin/oscapd
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ # Copyright 2015 Red Hat Inc., Durham, North Carolina.
+ # All Rights Reserved.
+--- a/bin/oscapd-cli
++++ b/bin/oscapd-cli
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ # Copyright 2015 Red Hat Inc., Durham, North Carolina.
+ # All Rights Reserved.
+--- a/bin/oscapd-evaluate
++++ b/bin/oscapd-evaluate
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ # Copyright 2016 Red Hat Inc., Durham, North Carolina.
+ # All Rights Reserved.
+--- a/setup.py
++++ b/setup.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ 
+ # Copyright 2015 Red Hat Inc., Durham, North Carolina.
+ # All Rights Reserved.
