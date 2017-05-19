@@ -13,8 +13,8 @@ Standards-Version: 3.9.8
 X-Python3-Version: >= 3.2
 Testsuite: autopkgtest
 Homepage: https://www.open-scap.org/tools/openscap-daemon
-Vcs-Git: https://github.com/pthierry38/openscap-daemon.git
-Vcs-Browser: https://github.com/pthierry38/openscap-daemon
+Vcs-Git: https://anonscm.debian.org/git/pkg-security/openscap-daemon.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-security/openscap-daemon.git/
 
 Package: openscap-daemon
 Architecture: all
