@@ -7,7 +7,7 @@ override_dh_installinit:
 	dh_installinit -popenscap_daemon --name=oscapd
 
 override_dh_install:
-	dh_install --buildsystem=pybuild
+	dh_install -O--buildsystem=pybuild
 	rm -rf $(CURDIR)/debian/openscap-daemon/usr/lib/python3/dist-packages/openscap_daemon/__pycache__
 	rm -rf $(CURDIR)/debian/openscap-daemon/usr/lib/python3/dist-packages/openscap_daemon/cve_scanner/__pycache__
 
