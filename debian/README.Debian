@@ -5,4 +5,101 @@ The oscapd daemon allows the usage of automated compliance check of a
 complete physical or virtual infrastructure, associated a dbus service
 with a easy to use CLI to configure compliance jobs.
 
+This service is integrated in both sysvinit-based and systemd-based Debian
+installation.
+
+In the case of sysvinit-based Debian install:
+
+1) Update the /etc/default/openscap-daemon to enable it:
+   - comment the OSCAPD_START="no" line
+   - uncomment the OSCAPD_START="yes" line
+
+2) Restart the openscap-daemon init script:
+  /etc/init.d/openscap-daemon start
+   The service will start automatically the next time
+
+In the case of systemd-based Debian install:
+
+1) Enable the service:
+  systemctl enable oscapd.service
+
+2) start the service:
+  systemctl start oscapd.service
+   The service will start automatically the next time
+
+Interacting with the daemon
+
+The daemon is a dbus service, interracting with is can be done only with root
+(or sudo) rights. This can be changed if needed by updating the daemon policy in
+/etc/dbus-1/org.oscapd.conf.
+
+These interractions are done using the tool oscapd-cli. This tool permits to:
+ - create policy evaluation tasks
+ - enable or disable created tasks
+ - get back successive results (XML) and reports (HTML) for each task instance
+ - get the status of successive instance of each task
+
+A task can evaluate:
+ - the local host
+ - a remote host via ssh
+ - a virtual machine
+ - a docker container
+
+By now, using only Debian package, only localhost is supported. A Debian Wiki
+page (https://wiki.debian.org/UsingSCAP) describe how to add support for other
+targets.
+
+A task can be scheduled periodically. All successive results and reports are
+saved in /var/lib/oscapd/results/<taskid>/<task_instance>/
+
+Here is an example of creating a task for a remote Jessie host using ssh from
+a security server hosting this software, as described in 
+https://wiki.debian.org/UsingSCAP
+
+# oscapd-cli create-task -i
+Creating new task in interactive mode
+Title: test
+Target (empty for localhost): ssh+sudo://scapadm@target
+Input file (absolute path): /usr/share/ssg/ssg-debian8-ds.xml
+Tailoring file (absolute path, empty for no tailoring): 
+Found the following possible profiles: 
+  1:  (default) (id='')
+  2:  Common Profile for General-Purpose Debian Systems (id='xccdf_org.ssgproject.content_profile_common')
+  3:  Profile for ANSSI DAT-NT28 Restrictive Level (id='xccdf_org.ssgproject.content_profile_anssi_np_nt28_restrictive')
+  4:  Profile for ANSSI DAT-NT28 Minimal Level (id='xccdf_org.ssgproject.content_profile_anssi_np_nt28_minimal')
+  5:  Profile for ANSSI DAT-NT28 High (Enforced) Level (id='xccdf_org.ssgproject.content_profile_anssi_np_nt28_high')
+  6:  Profile for ANSSI DAT-NT28 Average (Intermediate) Level (id='xccdf_org.ssgproject.content_profile_anssi_np_nt28_average')
+Choose profile by number (empty for (default) profile): 5
+Online remediation (1, y or Y for yes, else no): no
+Schedule: 
+ - not before (YYYY-MM-DD HH:MM in UTC, empty for NOW): 
+ - repeat after (hours or @daily, @weekly, @monthly, empty or 0 for no repeat): 4
+Task created with ID '3'. It is currently set as disabled. You can enable it with `oscapd-cli task 3 enable`.
+
+# oscapd-cli task 3 enable
+
+The previous commands created a task that will execute a scan on target "test"
+through ssh and using sudo to execute oscap. This task will be executed every
+4 hours and its results and reports will be stored in the security server.
+
+Getting back the results (XML)
+
+# oscapd-cli task
+---+-------+-----------------------------+---------------------+---------
+ID | Title | Target                      | Modified            | Enabled 
+---+-------+-----------------------------+---------------------+---------
+1  | test  | test                        | 2017-04-13 12:44:38 | enabled
+
+# oscapd-cli result 1
+Results of Task "test", ID = 1
+
+---+---------------------+-----------------
+ID | Timestamp           | Status          
+---+---------------------+-----------------
+2  | 2017-04-13 11:51:29 | Non-Compliant
+1  | 2017-04-13 15:51:34 | Non-Compliant
+
+# oscapd-cli result 1 2 arf  > exported-arf-result.xml
+# oscapd-cli result 1 2 report > exported-report.html
+
  -- Philippe Thierry <phil@reseau-libre.net>  Tue, 11 Apr 2017 17:01:11 +0200
