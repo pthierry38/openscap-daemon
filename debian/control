@@ -12,7 +12,7 @@ Vcs-Browser: https://github.com/pthierry38/openscap-daemon
 
 Package: openscap-daemon
 Architecture: all
-Depends: ${misc:Depends}, lsb-base, python3 (>= 3.2), dbus, python3-dbus, python3-docker, python3-lxml, libopenscap8
+Depends: ${misc:Depends}, lsb-base, ${python3:Depends}, dbus, python3-dbus, python3-docker, python3-lxml, libopenscap8
 Multi-Arch: foreign
 Recommends: openssh-client
 Suggests: docker
