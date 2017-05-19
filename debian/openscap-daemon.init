@@ -32,6 +32,7 @@ fi
 
 DESC="openscap-daemon"
 DAEMON=/usr/bin/oscapd
+PIDFILE=/var/run/oscapd.pid
 
 # running the dbus service when activated only. Disabled by default.
 test "${OSCAPD_START}" = "yes" || exit 0
@@ -45,9 +46,9 @@ do_start() {
   # oscapd doesn't go into background and does not support pidfile
   # it can be checked as a dbus service but it is easier to check
   # its status through a pidfile in the case of sysvinit start
-  if [ ! -f /var/run/oscapd.pid ]; then
+  if [ ! -f $PIDFILE ]; then
     log_daemon_msg "Starting OpenSCAP dbus service" "oscapd" || true
-    if start-stop-daemon --start --quiet --oknodo --background --exec $DAEMON; then
+    if start-stop-daemon --start --quiet --oknodo --pidfile $PIDFILE --make-pidfile --background --exec $DAEMON; then
       log_end_msg 0 || true
     else
       log_end_msg 1 || true
@@ -58,7 +59,11 @@ do_start() {
   fi
 }
 
-# this daemon is a dbus service hooked by oscapd-cli at need, no need to
-# "stop" it
-#do_stop() {
-#}
+do_stop() {
+  log_daemon_msg "Stopping OpenSCAP dbus service" "oscapd" || true
+  if start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE --remove-pidfile; then
+    log_end_msg 0 || true
+  else
+    log_end_msg 1 || true
+  fi
+}
