@@ -1,7 +1,7 @@
 Tests: systemd-start-stop-daemon
-Restrictions: needs-root
+Restrictions: needs-root, isolation-container
 Depends: @, systemd
 
 Tests: sysvinit-start-stop-daemon
-Restrictions: needs-root
+Restrictions: needs-root, isolation-container
 Depends: @, sysv-rc, sysv-rc-conf, sysvinit-core, sysvinit-utils
