@@ -26,7 +26,7 @@ Depends:
  python3-dbus,
  python3-docker,
  python3-lxml,
- python3-gi
+ python3-gi,
  ${misc:Depends},
  ${python3:Depends},
 Multi-Arch: foreign

@@ -1,3 +1,11 @@
+openscap-daemon (0.1.6-2) unstable; urgency=medium
+
+  * Updated CI checks.
+  * Add missing dependency.
+  * Passing dh to 10.
+
+ -- Philippe Thierry <phil@reseau-libre.net>  Wed, 24 May 2017 17:32:27 +0200
+
 openscap-daemon (0.1.6-1) unstable; urgency=medium
 
   * Initial release (Closes: #860126).
