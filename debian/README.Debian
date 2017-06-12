@@ -8,24 +8,8 @@ with a easy to use CLI to configure compliance jobs.
 This service is integrated in both sysvinit-based and systemd-based Debian
 installation.
 
-In the case of sysvinit-based Debian install:
-
-1) Update the /etc/default/openscap-daemon to enable it:
-   - comment the OSCAPD_START="no" line
-   - uncomment the OSCAPD_START="yes" line
-
-2) Restart the openscap-daemon init script:
-  /etc/init.d/openscap-daemon start
-   The service will start automatically the next time
-
-In the case of systemd-based Debian install:
-
-1) Enable the service:
-  systemctl enable oscapd.service
-
-2) start the service:
-  systemctl start oscapd.service
-   The service will start automatically the next time
+In the case of systemd-based Debian insall, the daemon execution is hardened
+by SECCOMP flags (see systemctl show oscapd.service for details).
 
 Interacting with the daemon
 
