@@ -56,7 +56,7 @@ Here is an example of creating a task for a remote Jessie host using ssh from
 a security server hosting this software, as described in 
 https://wiki.debian.org/UsingSCAP
 
-# oscapd-cli create-task -i
+# oscapd-cli task-create -i
 Creating new task in interactive mode
 Title: test
 Target (empty for localhost): ssh+sudo://scapadm@target
