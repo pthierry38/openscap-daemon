@@ -16,3 +16,34 @@ This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
           ["oscapd.service"]),
          (os.path.join("/", "usr", "share", "doc", "openscap-daemon"),
           ["README.md", "LICENSE"]),
+--- a/tests/data_dir_template/config.ini
++++ b/tests/data_dir_template/config.ini
+@@ -1,19 +1,21 @@
+ [General]
+-tasks-dir=./tasks
+-results-dir=./results
+-work-in-progress-dir=./work_in_progress
+-cve-feeds-dir=./cve_feeds
++tasks-dir=/var/lib/oscapd/tasks
++results-dir=/var/lib/oscapd/results
++work-in-progress-dir=/var/lib/oscapd/work_in_progress
++cve-feeds-dir=/var/lib/oscapd/cve_feeds
+ jobs=4
+ max-results-to-keep=100
+ 
++# path representative to current Debian install
++# Updated by auto-discover if needed
+ [Tools]
+-oscap=
+-oscap-ssh=
++oscap=/usr/bin/oscap
++oscap-ssh=/usr/local/bin/oscap-ssh
+ oscap-vm=
+ oscap-docker=
+ 
+ [Content]
+-ssg=
++ssg=/usr/share/ssg
+ 
+ [CVEScanner]
+ fetch-cve-url=
