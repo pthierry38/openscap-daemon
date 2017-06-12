@@ -1,0 +1,26 @@
+Description: Add Seccomp hardening through systemd
+ This file update the systemd service file to harden the daemon
+ execution environment.
+ Useless/dagerous syscalls/fileaccess are deactivated using
+ SECCOMP, reducing the risk of exploitation using the daemon.
+Author: Philippe Thierry
+Last-Update: 2017-06-12
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+--- a/oscapd.service
++++ b/oscapd.service
+@@ -5,6 +5,14 @@
+ [Service]
+ Type=dbus
+ BusName=org.OpenSCAP.daemon
++# let's harden the service
++SystemCallFilter=~@debug
++SystemCallFilter=~ptrace
++SystemCallFilter=~@clock
++SystemCallFilter=~@mount
++SystemCallFilter=~@obsolete
++ProtectSystem=full
++ProtectHome=yes
+ ExecStart=/usr/bin/oscapd
+ 
+ [Install]

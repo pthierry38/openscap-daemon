@@ -1,3 +1,4 @@
+systemd-harening.patch
 bashisms.patch
 readme_install.patch
 python_vers.patch
