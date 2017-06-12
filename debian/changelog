@@ -1,3 +1,11 @@
+openscap-daemon (0.1.6-3) unstable; urgency=medium
+
+  * Add initial config file for daemon settings.
+  * Add Systemd-based SECCOMP hardening.
+  * Update README.Debian (errors in explanations).
+
+ -- Philippe Thierry <phil@reseau-libre.net>  Mon, 12 Jun 2017 16:51:12 +0200
+
 openscap-daemon (0.1.6-2) unstable; urgency=medium
 
   * Switch maintainer to pkg-security team.
